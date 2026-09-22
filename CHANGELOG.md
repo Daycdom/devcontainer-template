@@ -32,3 +32,9 @@ so you can correlate a template update with any build issues that show up afterw
 - Trades some image size/startup time and version control for near-zero
   ongoing maintenance: Microsoft's team handles version bumps and security
   patches on the base image going forward.
+
+## 2026-09-21 21:31 EDT
+- Expanded `postCreateCommand` to also print package manager versions on
+  container startup (pip, npm, Maven, Bundler), not just language runtime
+  versions, so you get a full confirmation of what's available every time a
+  container is built.

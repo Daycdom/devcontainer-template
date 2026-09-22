@@ -1,13 +1,11 @@
 {
   "name": "Multi-language Dev Container",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-
   "workspaceFolder": "/workspace",
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "source=${localEnv:HOME}/.ssh,target=/home/codespace/.ssh,type=bind,readonly"
   ],
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -24,10 +22,12 @@
       ]
     }
   },
-
-  "forwardPorts": [3000, 5000, 8000, 8080],
-
-  "postCreateCommand": "sudo chown -R codespace:codespace /home/codespace/.ssh 2>/dev/null; chmod 700 /home/codespace/.ssh 2>/dev/null; chmod 600 /home/codespace/.ssh/* 2>/dev/null; echo Dev container ready. Versions:; python3 --version; g++ --version | head -n1; java -version; go version; ruby --version; node --version; npm --version",
-
+  "forwardPorts": [
+    3000,
+    5000,
+    8000,
+    8080
+  ],
+  "postCreateCommand": "sudo chown -R codespace:codespace /home/codespace/.ssh 2>/dev/null; chmod 700 /home/codespace/.ssh 2>/dev/null; chmod 600 /home/codespace/.ssh/* 2>/dev/null; echo Dev container ready. Languages:; python3 --version; g++ --version | head -n1; java -version; go version; ruby --version; node --version; echo Package managers:; pip --version; npm --version; mvn --version | head -n1; bundle --version",
   "remoteUser": "codespace"
 }
