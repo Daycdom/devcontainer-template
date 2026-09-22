@@ -38,3 +38,14 @@ so you can correlate a template update with any build issues that show up afterw
   container startup (pip, npm, Maven, Bundler), not just language runtime
   versions, so you get a full confirmation of what's available every time a
   container is built.
+
+## 2026-09-21 21:51 EDT
+- Moved SSH setup and version-check logic out of the inline `postCreateCommand`
+  string and into `.devcontainer/post-create.sh`, a dedicated script that runs
+  on container creation.
+- The script now also pre-adds github.com to `known_hosts` via `ssh-keyscan`,
+  so the first `git push`/`git pull` inside a fresh container doesn't stop to
+  ask for host-key confirmation.
+- The script prints whether a key was actually found (helpful if the SSH mount
+  didn't pick anything up) and runs a live `ssh -T git@github.com` test so you
+  know immediately, on container startup, whether GitHub auth is working.
