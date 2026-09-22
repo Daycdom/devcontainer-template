@@ -21,3 +21,14 @@ so you can correlate a template update with any build issues that show up afterw
 - Initial template created: Ubuntu 24.04 base image with Python, C++, Java, Go,
   Ruby, and Node installed directly in the Dockerfile; devcontainer.json with
   editor extensions and forwarded ports.
+
+## 2026-09-21 21:25 EDT
+- Switched base from a custom Dockerfile to Microsoft's prebuilt
+  `mcr.microsoft.com/devcontainers/universal:2` image, which already bundles
+  Python, C++, Java, Go, Ruby, Node, and more. Removed the Dockerfile and the
+  per-language Features entirely, since the universal image covers them.
+- Updated the SSH mount and remoteUser from `vscode` to `codespace`, which is
+  the user the universal image runs as.
+- Trades some image size/startup time and version control for near-zero
+  ongoing maintenance: Microsoft's team handles version bumps and security
+  patches on the base image going forward.

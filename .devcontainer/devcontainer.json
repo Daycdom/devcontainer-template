@@ -1,21 +1,12 @@
 {
   "name": "Multi-language Dev Container",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+
   "workspaceFolder": "/workspace",
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind",
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+    "source=${localEnv:HOME}/.ssh,target=/home/codespace/.ssh,type=bind,readonly"
   ],
-
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
-    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
-    "ghcr.io/devcontainers/features/go:1": { "version": "1.23" },
-    "ghcr.io/devcontainers/features/java:1": { "version": "21" },
-    "ghcr.io/devcontainers/features/ruby:1": { "version": "3.3" }
-  },
 
   "customizations": {
     "vscode": {
@@ -36,7 +27,7 @@
 
   "forwardPorts": [3000, 5000, 8000, 8080],
 
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.ssh 2>/dev/null; chmod 700 /home/vscode/.ssh 2>/dev/null; chmod 600 /home/vscode/.ssh/* 2>/dev/null; echo Dev container ready. Versions:; python3 --version; g++ --version | head -n1; java -version; go version; ruby --version; node --version; npm --version",
+  "postCreateCommand": "sudo chown -R codespace:codespace /home/codespace/.ssh 2>/dev/null; chmod 700 /home/codespace/.ssh 2>/dev/null; chmod 600 /home/codespace/.ssh/* 2>/dev/null; echo Dev container ready. Versions:; python3 --version; g++ --version | head -n1; java -version; go version; ruby --version; node --version; npm --version",
 
-  "remoteUser": "vscode"
+  "remoteUser": "codespace"
 }
