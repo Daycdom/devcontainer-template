@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Watches the Dockerfile's base image for updates
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "weekly"
+
+  # Watches devcontainer.json Features for version updates
+  - package-ecosystem: "devcontainers"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "weekly"
