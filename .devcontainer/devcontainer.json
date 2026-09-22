@@ -1,0 +1,34 @@
+{
+  "name": "Multi-language Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+  ],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "vscjava.vscode-java-pack",
+        "golang.go",
+        "shopify.ruby-lsp",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ritwickdey.liveserver"
+      ]
+    }
+  },
+
+  "forwardPorts": [3000, 5000, 8000, 8080],
+
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.ssh 2>/dev/null; chmod 700 /home/vscode/.ssh 2>/dev/null; chmod 600 /home/vscode/.ssh/* 2>/dev/null; echo Dev container ready. Versions:; python3 --version; g++ --version | head -n1; java -version; go version; ruby --version; node --version; npm --version",
+
+  "remoteUser": "vscode"
+}
